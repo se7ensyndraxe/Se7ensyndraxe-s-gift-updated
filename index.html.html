@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Se7enSyndraxe Özel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body { 
+    font-family: 'Poppins', sans-serif; 
+    background-color: #000; 
+    overflow: hidden; 
+    height: 100vh; 
+    width: 100vw; 
+    position: fixed; 
+  }
+
+  /* GİRİŞ EKRANI - FOTOĞRAF AYARI */
+  #entrance {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000 url('https://i.ibb.co/sJdgFtJb/WhatsApp-Image-2026-03-28-at-20-46-02.jpg') no-repeat center center;
+    background-size: cover; /* Ekranı tamamen kaplar, siyah boşluk bırakmaz */
+    z-index: 100; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-end;
+    padding-bottom: 12vh; /* Butonu alt menüden kurtarmak için yukarı çektik */
+    transition: opacity 0.8s ease;
+  }
+
+  .pink-btn {
+    background: #ff4d6d; color: white; border: none; padding: 16px 50px; font-size: 20px;
+    border-radius: 50px; cursor: pointer; box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+    font-weight: 600; z-index: 101; -webkit-tap-highlight-color: transparent;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* ANA İÇERİK */
+  #main-content {
+    display: none; opacity: 0; flex-direction: column; align-items: center; justify-content: center;
+    gap: 15px; height: 100vh; width: 100%; 
+    background: radial-gradient(circle at center, #1a0508 0%, #000 100%);
+    position: relative; transition: opacity 0.6s ease;
+  }
+
+  .big-letter { 
+    font-family: 'Great Vibes', cursive; 
+    font-size: clamp(80px, 25vw, 120px); 
+    color: #ff4d6d; 
+    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+  }
+
+  .card { 
+    background: rgba(255, 255, 255, 0.95); 
+    border-radius: 25px; padding: 20px; text-align: center; 
+    width: 90%; max-width: 320px; 
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.3); 
+  }
+
+  #days-count { font-size: 55px; font-weight: 700; color: #ff4d6d; display: block; line-height: 1; }
+  .days-label { font-size: 14px; font-weight: 600; color: #590d22; margin-top: 5px; }
+
+  /* DOĞUM GÜNÜ SAYACI STİLİ */
+  #bday-status {
+    margin-top: 10px; font-size: 15px; color: #ff4d6d; 
+    font-weight: 600; font-style: italic; letter-spacing: 0.5px;
+    text-shadow: 0 0 5px rgba(255, 77, 109, 0.3);
+  }
+
+  .note-card { 
+    background: rgba(255, 240, 243, 0.95); 
+    border-left: 6px solid #ff4d6d; padding: 18px; 
+    border-radius: 12px; width: 90%; max-width: 320px; color: #590d22; 
+  }
+  
+  .note-card h3 { margin-bottom: 5px; color: #ff4d6d; font-size: 24px; font-family: 'Great Vibes', cursive; }
+  .note-card p { font-size: 14px; line-height: 1.5; }
+
+  .heart-particle { position: absolute; color: #ff4d6d; pointer-events: none; animation: float 6s linear infinite; z-index: 1; }
+  @keyframes float { 
+    0% { transform: translateY(110vh) scale(0); opacity: 0; } 
+    100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } 
+  }
+
+  .footer { 
+    margin-top: 20px; font-size: 10px; color: #fff; letter-spacing: 2px; 
+    text-transform: uppercase; font-weight: 600; opacity: 0.7; 
+  }
+</style>
+</head>
+<body>
+
+  <div id="entrance">
+    <button class="pink-btn" onclick="startSurprise()">Tıkla.</button>
+  </div>
+
+  <div id="main-content">
+    <h1 class="big-letter">E</h1>
+    
+    <div class="card">
+      <span id="days-count">0</span>
+      <div class="days-label">Gündür Hayatımdasın</div>
+      <div id="bday-status"></div>
+    </div>
+
+    <div class="note-card">
+      <h3>E...</h3>
+      <p>Dünyanın en güzel kızı... Seninle geçen her gün için teşekkür ederim. Seni seviyorum.</p>
+    </div>
+
+    <div class="footer">designed by se7ensyndraxe</div>
+  </div>
+
+<script>
+  function startSurprise() {
+    const ent = document.getElementById('entrance');
+    const main = document.getElementById('main-content');
+    ent.style.opacity = '0';
+    setTimeout(() => { 
+      ent.style.display = 'none'; 
+      main.style.display = 'flex'; 
+      setTimeout(() => { 
+        main.style.opacity = '1'; 
+        initHearts(); 
+      }, 50); 
+    }, 800);
+  }
+
+  function initHearts() {
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div'); 
+      heart.className = 'heart-particle'; 
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw'; 
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      document.getElementById('main-content').appendChild(heart);
+    }
+  }
+
+  // 1. HAYATIMDA OLDUĞU GÜN SAYISI (12 EYLÜL 2022)
+  const startDate = new Date(2022, 8, 12); 
+  const totalDays = Math.floor((new Date() - startDate) / (1000 * 60 * 60 * 24));
+  document.getElementById('days-count').innerText = totalDays;
+
+  // 2. DOĞUM GÜNÜ GERİ SAYIMI (12 AĞUSTOS)
+  function updateBirthday() {
+    const now = new Date();
+    let nextBday = new Date(now.getFullYear(), 7, 12); // 7 = Ağustos (0-indexed)
+
+    // Eğer bu yılın doğum günü geçtiyse, sonraki yıla odaklan
+    if (now > nextBday && now.getDate() !== 12) {
+      nextBday.setFullYear(now.getFullYear() + 1);
+    }
+
+    // Farkı hesapla
+    const diff = nextBday - now;
+    const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+    const statusEl = document.getElementById('bday-status');
+    
+    // Eğer bugün o günse
+    if (now.getMonth() === 7 && now.getDate() === 12) {
+      statusEl.innerText = "Bugün Senin Doğum Günün! ❤️";
+    } else {
+      statusEl.innerText = `Doğum gününe ${daysLeft} gün kaldı...`;
+    }
+  }
+  
+  updateBirthday();
+</script>
+
+</body>
+</html>
