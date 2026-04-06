@@ -19,23 +19,25 @@
     position: fixed; 
   }
 
-  /* GİRİŞ EKRANI */
+  /* GİRİŞ EKRANI - YENİ EPİK ARKA PLAN */
   #entrance {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000 url('https://i.ibb.co/sJdgFtJb/WhatsApp-Image-2026-03-28-at-20-46-02.jpg') no-repeat center center;
-    background-size: cover;
-    z-index: 1000; 
+    /* İstediğin o dramatik deniz manzarası arka planı */
+    background: #000 url('https://i.ibb.co/Xxd9YJb/epic-sea-background.jpg') no-repeat center center;
+    background-size: cover; /* Ekranı siyah boşluk kalmayacak şekilde kaplar */
+    z-index: 1000; /* Giriş ekranı en üstte */
     display: flex; 
     justify-content: center; 
     align-items: flex-end;
-    padding-bottom: 12vh;
+    padding-bottom: 12vh; /* Butonu alt menüden kurtarmak için yukarı çektik */
     transition: opacity 0.8s ease;
   }
 
   .pink-btn {
     background: #ff4d6d; color: white; border: none; padding: 16px 50px; font-size: 20px;
     border-radius: 50px; cursor: pointer; box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
-    font-weight: 600; z-index: 1001; -webkit-tap-highlight-color: transparent;
+    font-weight: 600; z-index: 1001; /* Buton giriş ekranının da üstünde */
+    -webkit-tap-highlight-color: transparent;
     animation: pulse 2s infinite;
   }
 
@@ -45,13 +47,13 @@
     100% { transform: scale(1); }
   }
 
-  /* ANA İÇERİK */
+  /* ANA İÇERİK - KALPLER SİLİNDİ, SADELİK GELDİ */
   #main-content {
-    display: none; opacity: 0; flex-direction: column; align-items: center; justify-content: center;
+    display: none; opacity: 0; flex-direction: column; align-items: center; justify(content): center;
     gap: 15px; height: 100vh; width: 100%; 
     background: radial-gradient(circle at center, #1a0508 0%, #000 100%);
     position: relative; transition: opacity 0.6s ease;
-    z-index: 10; /* İçerik kalplerin üstünde kalsın */
+    z-index: 10;
   }
 
   .big-letter { 
@@ -97,22 +99,6 @@
   .note-card h3 { margin-bottom: 5px; color: #ff4d6d; font-size: 24px; font-family: 'Great Vibes', cursive; }
   .note-card p { font-size: 14px; line-height: 1.5; }
 
-  /* KALPLER İÇİN ÖZEL CSS */
-  .heart-particle { 
-    position: absolute; 
-    color: rgba(255, 77, 109, 0.6); /* Biraz daha belirgin yaptık */
-    pointer-events: none; 
-    animation: floatUp 6s linear infinite; 
-    z-index: 5; /* Arka planın üstünde ama kartların altında */
-  }
-
-  @keyframes floatUp { 
-    0% { transform: translateY(110vh) scale(0.5); opacity: 0; } 
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } 
-  }
-
   .footer { 
     margin-top: 20px; font-size: 10px; color: #fff; letter-spacing: 2px; 
     text-transform: uppercase; font-weight: 600; opacity: 0.7; 
@@ -127,6 +113,7 @@
   </div>
 
   <div id="main-content">
+    
     <h1 class="big-letter">E</h1>
     
     <div class="card">
@@ -137,7 +124,7 @@
 
     <div class="note-card">
       <h3>E...</h3>
-      <p>Dünyanın en güzel kızı... Seninle geçen her gün için teşekkür ederim. Seni seviyorum.</p>
+      <p>Dünyanın en güzel kızı... Seninle geçen her gün için teşekkür ederim Seni seviyorum :D</p>
     </div>
 
     <div class="footer">designed by se7ensyndraxe</div>
@@ -148,35 +135,19 @@
     const ent = document.getElementById('entrance');
     const main = document.getElementById('main-content');
     
+    // Giriş ekranı opacity 0'a düşer
     ent.style.opacity = '0';
     setTimeout(() => { 
+      // 0.8 saniye sonra giriş ekranı yok olur
       ent.style.display = 'none'; 
+      // Ana içerik 'flex' olarak açılır
       main.style.display = 'flex'; 
       setTimeout(() => { 
+        // 50ms sonra ana içerik opacity 1'e çıkar (fark edilmez bir geçiş)
         main.style.opacity = '1'; 
-        // Kalpleri direkt body'e ekle (Garanti yöntem)
-        for (let i = 0; i < 25; i++) {
-          createHeart();
-        }
+        // Kalp animasyonu fonksiyonu silindiği için hata vermez
       }, 50); 
     }, 800);
-  }
-
-  function createHeart() {
-    const heart = document.createElement('div'); 
-    heart.className = 'heart-particle'; 
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw'; 
-    
-    // Rastgele süre ve gecikme
-    const duration = Math.random() * 3 + 4;
-    const delay = Math.random() * 5;
-    
-    heart.style.animationDuration = duration + 's';
-    heart.style.animationDelay = delay + 's';
-    heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-    
-    document.body.appendChild(heart);
   }
 
   // GÜN SAYISI
