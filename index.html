@@ -19,15 +19,17 @@
     position: fixed; 
   }
 
-  /* FOTOĞRAF NETLEŞTİRİCİ KATMAN */
+  /* YÜKSEK ÇÖZÜNÜRLÜKLÜ FOTOĞRAF AYARI (iPHONE X OPTİMİZE) */
   .bg-image {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    object-fit: cover; /* Fotoğrafı bozmadan ekrana yayar */
+    object-fit: cover; /* Fotoğrafı bozmadan ekrana tam oturtur */
     object-position: center;
-    z-index: -1; /* İçeriğin arkasında kalması için */
-    image-rendering: -webkit-optimize-contrast; /* iOS için ekstra netlik */
+    z-index: -1;
+    /* Pikselleşmeyi önleyen render komutları */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   /* GİRİŞ EKRANI */
@@ -37,14 +39,14 @@
     display: flex; 
     justify-content: center; 
     align-items: flex-end;
-    padding-bottom: 12vh;
+    padding-bottom: 15vh;
     transition: opacity 0.8s ease;
     background: #000;
   }
 
   .pink-btn {
-    background: #ff4d6d; color: white; border: none; padding: 16px 50px; font-size: 20px;
-    border-radius: 50px; cursor: pointer; box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+    background: #ff4d6d; color: white; border: none; padding: 18px 65px; font-size: 22px;
+    border-radius: 50px; cursor: pointer; box-shadow: 0 8px 30px rgba(255, 77, 109, 0.7);
     font-weight: 600; z-index: 1001; -webkit-tap-highlight-color: transparent;
     animation: pulse 2s infinite;
   }
@@ -59,54 +61,54 @@
     background: #000;
   }
 
-  /* YAZILARIN OKUNMASI İÇİN KARARTMA */
+  /* YAZILARIN OKUNMASI İÇİN HAFİF KARARTMA */
   .overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.3); z-index: 0;
+    background: rgba(0,0,0,0.35); z-index: 0;
   }
 
   .big-letter { 
     font-family: 'Great Vibes', cursive; 
-    font-size: clamp(80px, 25vw, 120px); 
+    font-size: clamp(90px, 28vw, 130px); 
     color: #fff; 
-    text-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
+    text-shadow: 0 0 25px rgba(255, 77, 109, 1);
     animation: glow 2.5s ease-in-out infinite;
     z-index: 10;
   }
 
   @keyframes glow {
-    0%, 100% { opacity: 1; text-shadow: 0 0 20px rgba(255, 77, 109, 0.8); }
-    50% { opacity: 0.6; text-shadow: 0 0 40px rgba(255, 77, 109, 1); }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.03); }
   }
 
   .card, .note-card { 
-    background: rgba(255, 255, 255, 0.92); 
-    border-radius: 25px; padding: 20px; text-align: center; 
-    width: 85%; max-width: 320px; 
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+    background: rgba(255, 255, 255, 0.94); 
+    border-radius: 25px; padding: 22px; text-align: center; 
+    width: 88%; max-width: 320px; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
     z-index: 10;
   }
 
-  #days-count { font-size: 55px; font-weight: 700; color: #ff4d6d; display: block; line-height: 1; }
-  .days-label { font-size: 14px; font-weight: 600; color: #590d22; margin-top: 5px; }
+  #days-count { font-size: 58px; font-weight: 700; color: #ff4d6d; display: block; line-height: 1; }
+  .days-label { font-size: 15px; font-weight: 600; color: #590d22; margin-top: 5px; }
 
-  #bday-status { margin-top: 10px; font-size: 15px; color: #ff4d6d; font-weight: 600; font-style: italic; }
+  #bday-status { margin-top: 10px; font-size: 14px; color: #ff4d6d; font-weight: 600; font-style: italic; }
 
-  .note-card { border-left: 6px solid #ff4d6d; border-radius: 12px; color: #333; text-align: left; }
-  .note-card h3 { margin-bottom: 5px; color: #ff4d6d; font-size: 24px; font-family: 'Great Vibes', cursive; }
+  .note-card { border-left: 7px solid #ff4d6d; border-radius: 12px; color: #333; text-align: left; }
+  .note-card h3 { margin-bottom: 5px; color: #ff4d6d; font-size: 26px; font-family: 'Great Vibes', cursive; }
   
-  .footer { margin-top: 20px; font-size: 10px; color: #fff; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.8; z-index: 10; }
+  .footer { margin-top: 20px; font-size: 10px; color: #fff; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; text-shadow: 1px 1px 3px #000; z-index: 10; }
 </style>
 </head>
 <body>
 
   <div id="entrance">
-    <img src="https://i.ibb.co/sJdgFtJb/WhatsApp-Image-2026-03-28-at-20-46-02.jpg" class="bg-image" alt="bg">
+    <img src="https://i.postimg.cc/s27xLnb5/Whats-App-Image-2026-03-28-at-20-46-02-(1).jpg" class="bg-image" alt="AyazGiris">
     <button class="pink-btn" onclick="startSurprise()">Tıkla.</button>
   </div>
 
   <div id="main-content">
-    <img src="https://i.ibb.co/bjsMHdGx/sahil.jpg" class="bg-image" alt="bg">
+    <img src="https://i.postimg.cc/pV6vDf6V/sahil-(1).jpg" class="bg-image" alt="AyazSahil">
     <div class="overlay"></div>
 
     <h1 class="big-letter">E</h1>
@@ -137,15 +139,16 @@
     }, 800);
   }
 
+  // GÜN SAYACI
   const startDate = new Date(2022, 8, 12); 
-  document.getElementById('days-count').innerText = Math.floor((new Date() - startDate) / (1000 * 60 * 60 * 24));
+  document.getElementById('days-count').innerText = Math.floor((new Date() - startDate) / 86400000);
 
+  // DOĞUM GÜNÜ
   function updateBirthday() {
     const now = new Date();
     let nextBday = new Date(now.getFullYear(), 7, 12); 
     if (now > nextBday && now.getDate() !== 12) nextBday.setFullYear(now.getFullYear() + 1);
-    const diff = nextBday - now;
-    const daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const daysLeft = Math.ceil((nextBday - now) / 86400000);
     const statusEl = document.getElementById('bday-status');
     statusEl.innerText = (now.getMonth() === 7 && now.getDate() === 12) ? "Bugün Senin Doğum Günün! ❤️" : `Doğum gününe ${daysLeft} gün kaldı...`;
   }
